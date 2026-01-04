@@ -1,0 +1,19 @@
+Development log
+
+[user] 2026-01-04: Начата работа, доложена готовность
+[user] 2026-01-04: Создана папка Management с томами Goal и Plans
+[user] 2026-01-04: Очищены тома от инициативных фактов
+[user] 2026-01-04: Добавлен факт MorpheusEndState в goal
+[user] 2026-01-04: Заменены Plans на Backlog, исправлены include'ы
+[user] 2026-01-04: Переименованы каталоги с маленькой буквы
+[morta] 2026-01-04: Исправлен Q с inf на 0.9 в UserInteractionLogging факт
+[morta] 2026-01-04: Удален старый файл Plans.tome из _status
+[morta] 2026-01-04: Упрощен факт Traces в KQM.tome, убраны лишние детали формата
+[morta] 2026-01-04: Дополнен UserInteractionLogging конкретными требованиями к формату
+[morta] 2026-01-04: Создан том formats в methods для внешних форматов данных
+[morta] 2026-01-04: Перенесен факт Traces из KQM.tome в formats.tome
+[morta] 2026-01-04: Уточнено описание content в UserInteractionLogging: "действие в этой интеракции"
+[morta] 2026-01-04: Перенесен факт Trace из FAL.tome в formats.tome как прикладная концепция
+[morta] 2026-01-04: Убрана ссылка на Trace из фундаментальных определений FAL.tome
+[morta] 2026-01-04: Переименован факт Traces в LineTraces для большей специфичности формата
+[morta] 2026-01-04: Связан UserInteractionLogging с форматом LineTraces для смысловой целостности
