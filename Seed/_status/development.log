@@ -17,3 +17,13 @@ Development log
 [morta] 2026-01-04: Убрана ссылка на Trace из фундаментальных определений FAL.tome
 [morta] 2026-01-04: Переименован факт Traces в LineTraces для большей специфичности формата
 [morta] 2026-01-04: Связан UserInteractionLogging с форматом LineTraces для смысловой целостности
+[morta] 2026-01-05: Добавлен факт Task в management.tome с определением понятия задачи
+[morta] 2026-01-05: Уточнен факт WorkTask - убраны внешние свойства, добавлено определение зависимостей как ссылок на факты типа WorkTask
+[morta] 2026-01-05: Добавлен факт SemanticReferenceUsage с рекомендацией предпочтительного использования семантических ссылок при создании фактов
+[morta] 2026-01-05: Создан новый том factauthoring.tome для процессов создания и авторинга фактов
+[morta] 2026-01-05: Уточнено описание factauthoring.tome - расширен до процессов синтеза, создания и формализации знаний
+[morta] 2026-01-05: Переименован том factauthoring.tome в synthesis.tome и перемещен из methods/ в core/
+[morta] 2026-01-05: Перенесен и адаптирован факт SemanticReferenceUsage в synthesis.tome как SemanticReferencePreference с разделением на определение и преимущества
+[morta] 2026-01-05: Добавлена семантическая ссылка на @KQM::Reference в определении SemanticReferencePreference
+[morta] 2026-01-05: Переименован факт SemanticReferencePreference в ReferencePreference, понижен Q для ReferenceBenefits с 0.3 до 0.15
+[morta] 2026-01-05: Переработан факт LinkagePreference - фокус на связывании новых фактов с корпусом через семантические ссылки
