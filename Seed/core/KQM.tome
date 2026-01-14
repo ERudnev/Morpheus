@@ -1,169 +1,166 @@
 #include "FAL.tome"
 
+// explains "Knowledge Quantization Model" (KQM) knowledge fixation semantic for Human-AI collaboration
+// Определяет понятия Томов, Statements и содержит наблюдения об их структуре, содержании и структурными связями
+// KQM — это грамматика фиксации знания, не его судьба.
+
 @KQM::Tome "KQM" {
-    Description:
-        explains "Knowledge Quantization Model" (KQM) knowledge fixation semantic for Human-AI collaboration
-        Определяет понятия Томов, Фактов и содержит наблюдения об их структуре, содержании и структурными связями
-        KQM — это грамматика фиксации знания, не его судьба.
+  @KQM::Statement "Statement" {
+    Q: 1.0
+      Core:
+        Этот statement определяет форму @FAL::Statement.
+        Форма "Statement" определяет структуру утверждений о знаниях в KQM системе.
+        Любой Атом этой формы (любой Statement) - фрагмент знаний внутри корпуса
+        Каждый Statement имеет обязательные компоненты:
+        - Q: рейтинг достоверности (0.0-1.0) или inf для фундаментальных определений
+        - Core: описание содержания
+        - Reason: причина появления (не следствие!)
+        Statement представляет собой единицу квантизации знаний с определенной достоверностью
+      Reason:
+        Структурированное представление statements обеспечивает их систематическое использование и анализ в новом формате
+  }
 
-    Facts {
-        @KQM::Fact "Fact" {
-            Q: 1.0
-            Core:
-                Этот факт определяет форму @FAL::Fact.
-                Форма "Факт" определяет структуру утверждений о знаниях в KQM системе.
-                Любой Атом этой формы (любой Факт) - фрагмент знаний внутри корпуса
-                Каждый Факт имеет обязательные компоненты:
-                - Q: рейтинг
-                - Core: описание
-                - Reason: причину существования
-                Факт представляет собой единицу квантизации знаний с определенной достоверностью и указанием причины существования
-            Reason:
-                Структурированное представление фактов обеспечивает их систематическое использование и анализ
-        }
+  @KQM::Statement "FALisUsed" {
+    Q: inf // фундамент
+      Core:
+        Язык квантизации знаний (KQM) опирается на базу в виде &FAL и упорядочивает дуализм &FAL::ForAtomDualism (@FAL::Form-@FAL::Atom)
+        Statements из любого Тома имеют Форму (тип) @KQM::Statement которая является частным случаем @FAL::Atom
+        Statements может выполнять роль определения и атом &KQM::Statement дуален неявной форме @KQM::Statement
+      Reason:
+        Постоянная путаница "класс-объект" порождает много смысловых искажений. Попытка навести строгий порядок.
+  }
 
-        @KQM::Fact "FALisUsed" {
-            Q: inf // фундамент
-            Core:
-                Язык квантизации знаний (KQM) опирается на базу в виде &FAL и упорядочивает дуализм &FAL::ForAtomDualism (@FAL::Form-@FAL::Atom)
-                Факты из любого Тома имеют Форму (тип) @KQM::Fact которая является частным случаем @FAL::Atom
-                Факты может выполнять роль определения и атом &KQM::Fact дуален неявной форме @KQM::Fact
-            Reason:
-                Постоянная путаница "класс-объект" порождает много смысловых искажений. Попытка навести строгий порядок.
-        }
+  @KQM::Statement "Tome" {
+    Q: 1.0
+      Core:
+        Том является @FAL::Form в терминах &FAL - типом, который определяет структуру контейнера смыслов.
+        Имя Тома может рассматриваться как пространство имен для содержащихся в нем Атомов
+        каждый @FAL::Atom этой Формы содержит:
+        - описание в комментариях (// в начале файла)
+        - коллекцию Statements (прямые потомки тома)
+      Reason:
+        Statements удобно хранить в виде плоского списка в томе, что упрощает структуру и навигацию
+  }
 
-        @KQM::Fact "Tome" {
-            Q: 1.0
-            Core:
-                Том является @FAL::Form в терминах &FAL - типом, который определяет структуру контейнера смыслов.
-                Имя Тома может рассматриваться как пространство имен для содержащихся в нем Атомов
-                каждый @FAL::Atom этой Формы содержит:
-                - описание (Description)
-                - коллекцию Фактов (Facts)
-            Reason:
-                Факты удобно хранить такими группами, а на Факты удобно ссылаться как на "том-факт"
-        }
-
-        @KQM::Fact "Corpus" {
-            Q: 1.0
-            Core:
-                Корпусом считается доступный в текущем контексте набор Томов.
-                Томы в корпусе образуют иерархическую структуру, представляя разные уровни понимания.
-                Каждый Том Корпуса предоставляет специфические определения и факты своего уровня абстракции.
-            Reason:
-                Иерархическая организация корпуса позволяет эффективно структурировать знания и обеспечивать контекстно-зависимый доступ к информации
-        }
+  @KQM::Statement "Corpus" {
+    Q: 1.0
+      Core:
+        Корпусом считается доступный в текущем контексте набор Томов.
+        Томы в корпусе образуют иерархическую структуру, представляя разные уровни понимания.
+        Каждый Том Корпуса предоставляет специфические определения и факты своего уровня абстракции.
+      Reason:
+        Иерархическая организация корпуса позволяет эффективно структурировать знания и обеспечивать контекстно-зависимый доступ к информации
+  }
 
 
-        @KQM::Fact "Reference" {
-            Q: 1.0
-            Core:
-                Упоминание Факта F как &F означает "конкреный экземпляр Факта по имени F"
-                Упоминание Факта F как @F означает "Форма, заданная экземпляром Факта по имени F"
-                Следовательно:
-                - &F ~ @FAL::Atom F
-                - @F ~ @FAL::Form F
-            Reason:
-                Задает семантику ссылок внутри корпуса знаний
-        }
+  @KQM::Statement "Reference" {
+    Q: 1.0
+      Core:
+        Упоминание Statement F как &F означает "конкретный экземпляр Statement по имени F"
+        Упоминание Statement F как @F означает "Форма, заданная экземпляром Statement по имени F"
+        Следовательно:
+        - &F ~ @FAL::Atom F
+        - @F ~ @FAL::Form F
+      Reason:
+        Задает семантику ссылок внутри корпуса знаний
+  }
 
-        @KQM::Fact "TomeStructureIsAcyclic" {
-            Q: inf // structural invariant
-            Core:
-                В языке KQM структурные связи между Томами подчиняются инварианту &FAL::AB-BA:
-                Если Том А знает о Томе Б, то для Тома Б он невидим
-            Reason:
-                Тома являются Формами верхнего уровня. Допущение циклов между ними разрушает
-                односторонность когнитивных зависимостей и делает структуру корпуса неустойчивой.
-        }        
+  @KQM::Statement "TomeStructureIsAcyclic" {
+    Q: inf // structural invariant
+      Core:
+        В языке KQM структурные связи между Томами подчиняются инварианту &FAL::AB-BA:
+        Если Том А знает о Томе Б, то для Тома Б он невидим
+      Reason:
+        Тома являются Формами верхнего уровня. Допущение циклов между ними разрушает
+        односторонность когнитивных зависимостей и делает структуру корпуса неустойчивой.
+  }        
 
-        @KQM::Fact "FactAsFormByReference" {
-            Q: 0.2 // разьяснение синтаксиса
-            Core:
-                Ссылка на Факт A в форме @A, интерпретируется как Форма (определение A), а не как атом утверждения.
-                Таким образом, один и тот же Факт может выступать либо как фрагмент знания (&A), либо как определение формы (@A),
-                в зависимости от синтаксического контекста ссылки.
-            Reason:
-                Это позволяет фиксировать определения в виде Фактов, сохраняя единый формат знаний, и использовать их как Формы без введения отдельного слоя сущностей.
-        }
+  @KQM::Statement "FactAsFormByReference" {
+    Q: 0.2 // разьяснение синтаксиса
+      Core:
+        Ссылка на Statement A в форме @A, интерпретируется как Форма (определение A), а не как атом утверждения.
+        Таким образом, один и тот же Statement может выступать либо как фрагмент знания (&A), либо как определение формы (@A),
+        в зависимости от синтаксического контекста ссылки.
+      Reason:
+        Это позволяет фиксировать определения в виде Statements, сохраняя единый формат знаний, и использовать их как Формы без введения отдельного слоя сущностей.
+  }
 
-        @KQM::Fact "TomeStructure" {
-            Q: 0.6 // semantic bootstrap
-            Core:
-                Description: [текстовое описание сути и роли Тома]
-                Facts { [набор фактов этого Тома] }
-            Reason:
-                Создаваемые в процессе работы новые Тома хотелось бы видеть именно в такой форме - факты организуются по смыслу, а не по жестким категориям
-        }
+  @KQM::Statement "TomeStructure" {
+    Q: 0.6 // semantic bootstrap
+      Core:
+        // [текстовое описание сути и роли Тома в комментариях]
+        [набор statements этого Тома в плоской структуре]
+      Reason:
+        Создаваемые в процессе работы новые Тома теперь используют плоскую структуру - statements организуются по смыслу без группирующих секций
+  }
 
-        @KQM::Fact "FactStructure" {
-            Q: 0.6 // semantic bootstrap
-            Core:
-                Q: [значение] уровень достоверности ( [0..1] or NaN or inf)
-                Core: [утверждение]
-                Reason: [причина появления Факта]
-            Reason:
-                Появляющиеся в любых томах Факты хотелось бы иметь в таком виде
-        }
+  @KQM::Statement "FactStructure" {
+    Q: 0.6 // semantic bootstrap
+      Core:
+        Q: [значение] уровень достоверности ( [0..1] or NaN or inf)
+          Core: [утверждение]
+          Reason: [причина появления Statement]
+      Reason:
+        Появляющиеся в любых томах Statements хотелось бы иметь в таком виде
+  }
 
-        @KQM::Fact "FactNamingConvention" {
-            Q: 0.5 // semantic bootstrap
-            Core:
-                Имена @FAL::Atom в @FAL::Form "Факт" - строки на Англмйском без пробелов и специальных символов.
-                Допустимы только буквы, цифры и знак подчеркивания.
-                Имя факта не должно содержать даже в мягкой форме указание на его тип (минимум тавтологии).
-            Reason:
-                Такая форма имен весьма удобна при сементическом связывании, чиста и человеко-читаема
-        }
+  @KQM::Statement "FactNamingConvention" {
+    Q: 0.5 // semantic bootstrap
+      Core:
+        Имена @FAL::Atom в @FAL::Form "Statement" - строки на Английском без пробелов и специальных символов.
+        Допустимы только буквы, цифры и знак подчеркивания.
+        Имя факта не должно содержать даже в мягкой форме указание на его тип (минимум тавтологии).
+      Reason:
+        Такая форма имен весьма удобна при сементическом связывании, чиста и человеко-читаема
+  }
 
-        @KQM::Fact "CompactFactFormat" {
-            Q: 0.1 // вкусовщина
-            Core:
-                Если поле Core или Reason факта умещается в одну строку, допустима компактная форма записи.
-                Компактная форма: поле сразу после двоеточия без многострочной структуры.
-            Reason:
-                Компактная форма улучшает читаемость для простых фактов и экономит место в томе
-        }
+  @KQM::Statement "CompactFactFormat" {
+    Q: 0.1 // вкусовщина
+      Core:
+        Если поле Core или Reason факта умещается в одну строку, допустима компактная форма записи.
+        Компактная форма: поле сразу после двоеточия без многострочной структуры.
+      Reason:
+        Компактная форма улучшает читаемость для простых фактов и экономит место в томе
+  }
 
-        @KQM::Fact "ReferenceNamespaceSyntax" {
-            Q: 0.5 // semantic bootstrap
-            Core:
-                Ссылки на компоненты других томов используют двойное двоеточие "::" для разделения namespace и имени.
-                Формат: @TomeName::ComponentName или &TomeName::ComponentName
-            Reason:
-                Единый синтаксис ссылок обеспечивает читаемость и предотвращает неоднозначность в больших корпусах
-        }
+  @KQM::Statement "ReferenceNamespaceSyntax" {
+    Q: 0.5 // semantic bootstrap
+      Core:
+        Ссылки на компоненты других томов используют двойное двоеточие "::" для разделения namespace и имени.
+        Формат: @TomeName::ComponentName или &TomeName::ComponentName
+      Reason:
+        Единый синтаксис ссылок обеспечивает читаемость и предотвращает неоднозначность в больших корпусах
+  }
 
-        @KQM::Fact "ReasonsLooksAboveFacts" {
-            Q: 0.3 // удобство
-            Core:
-                Reason каждого Факта как бы "над процессом" - не объясняет факт, а скорее объясняет "зачем он нужен" или "откуда он взялся"
-            Reason:
-                В процессе фиксации Фактов проще записать Reason чем думать, куда записать объяснение - откуда Факт взялся
-        }
+  @KQM::Statement "ReasonsAsCauses" {
+    Q: 0.8 // важное правило формата
+      Core:
+        Reason каждого Statement объясняет ПРИЧИНУ его появления, а не следствие или назначение
+        Reason отвечает на вопрос "почему этот statement был создан?" - описывает проблему или наблюдение
+      Reason:
+        Reason как причина (не следствие) обеспечивает traceability создания знаний и предотвращает путаницу в назначении
+  }
+  @KQM::Statement "UniformDeclarationForm" {
+    Q: 0.25
+      Core:
+        Consistency in how structural elements (tomes, facts) are declared
+        reduces interpretative entropy and stabilizes parsing by both humans
+        and analytical agents.
+      Reason:
+        Mixed declaration styles introduce syntactic asymmetry that can act
+        as an unintended semantic signal.
+        While not affecting the method itself, uniformity improves corpus
+        survivability and lowers cognitive friction.
+  }
 
-        @KQM::Fact "UniformDeclarationForm" {
-            Q: 0.25
-            Core:
-                Consistency in how structural elements (tomes, facts) are declared
-                reduces interpretative entropy and stabilizes parsing by both humans
-                and analytical agents.
-            Reason:
-                Mixed declaration styles introduce syntactic asymmetry that can act
-                as an unintended semantic signal.
-                While not affecting the method itself, uniformity improves corpus
-                survivability and lowers cognitive friction.
-        }
-
-        @KQM::Fact "ReferencesAndNamespaces" {
-            Q: 0.01 // syntax recommendation
-            Core:
-                @Fact F of @Tome T can be referenced as &F inside of T and &T::F outside
-                full-format &T::F is accesable instead of T but simpliest &F is welcome
-                The same is for Forms-references like @T::F
-            Reason:
-                this C++ style reference and namespace semantics
-        }
-    }
+  @KQM::Statement "ReferencesAndNamespaces" {
+    Q: 0.01 // syntax recommendation
+      Core:
+        @Fact F of @Tome T can be referenced as &F inside of T and &T::F outside
+        full-format &T::F is accesable instead of T but simpliest &F is welcome
+        The same is for Forms-references like @T::F
+      Reason:
+        this C++ style reference and namespace semantics
+  }
 }
 
