@@ -8,7 +8,7 @@
         анализа структурированного поля фактов и артефактов.
 
     Facts {
-        @KQM::Fact "IntentionalFieldShaping" {
+        @KQM::Statement "IntentionalFieldShaping" {
             Q: 1.0
             Core:
                 Intentional Field Shaping (IFS) is a method of guiding a system
@@ -20,7 +20,7 @@
                 rather than relying on imperative control.
         }
 
-        @KQM::Fact "IntentAsContextFunction" {
+        @KQM::Statement "IntentAsContextFunction" {
             Q: 1.0
             Core:
                 Intent is not an intrinsic property of a token, fact, or artifact,
@@ -32,7 +32,7 @@
                 application or interpretation.
         }
 
-        @KQM::Fact "IntentActivationThroughAnalysis" {
+        @KQM::Statement "IntentActivationThroughAnalysis" {
             Q: 0.85
             Core:
                 Intent becomes observable only through analysis and subsequent
@@ -42,7 +42,7 @@
                 activates their relevance.
         }
 
-        @KQM::Fact "CoreSurvivability" {
+        @KQM::Statement "CoreSurvivability" {
             Q: 0.9
             Core:
                 A corpus is considered structurally valid if its structural kernel remains
@@ -55,7 +55,7 @@
         }
 
 
-        @KQM::Fact "AntiImperativePrinciple" {
+        @KQM::Statement "AntiImperativePrinciple" {
             Q: 1.0
             Core:
                 Direct imperative specification of intent is avoided in favor of
@@ -65,7 +65,7 @@
                 a rich corpus and reduce system stability.
         }
 
-        @KQM::Fact "AnalysisPriority" {
+        @KQM::Statement "AnalysisPriority" {
             Q: 0.85
             Core:
                 Analysis is the primary operation applied to artifacts of a
@@ -76,7 +76,7 @@
                 and their interpretations.
         }
 
-        @KQM::Fact "AnalysisHierarchy" {
+        @KQM::Statement "AnalysisHierarchy" {
             Q: 0.85
             Core:
                 Analysis establishes a hierarchy between artifacts: analyzed
@@ -86,7 +86,7 @@
                 domain-specific.
         }
 
-        @KQM::Fact "ArtifactPurity" {
+        @KQM::Statement "ArtifactPurity" {
             Q: 1.0
             Core:
                 Artifacts intended for analysis must not contain results of
@@ -96,7 +96,7 @@
                 analytical process.
         }
 
-        @KQM::Fact "AnalyticalOriginVsStructuralRole" {
+        @KQM::Statement "AnalyticalOriginVsStructuralRole" {
             Q: 0.8
             Core:
                 The origin of a fact (analysis, reflection, iteration) is independent
@@ -109,7 +109,7 @@
                 Structural role must be evaluated by function, not by genesis.
         }
 
-        @KQM::Fact "CoreEmergenceThroughAnalyticalDetachment" {
+        @KQM::Statement "CoreEmergenceThroughAnalyticalDetachment" {
             Q: 0.9
             Core:
                 A fact becomes part of the structural kernel only when it remains operationally
@@ -121,7 +121,7 @@
                 not core structure.
         }
 
-        @KQM::Fact "IntentNeutralityCheck" {
+        @KQM::Statement "IntentNeutralityCheck" {
             Q: 0.7
             Core:
                 A fact or methodological statement is intent-neutral if its meaning
@@ -137,7 +137,7 @@
         }
 
 
-        @KQM::Fact "StuffinessEffect" {
+        @KQM::Statement "StuffinessEffect" {
             Q: 0.7
             Core:
                 Stuffiness is a negative cognitive effect caused by mixing
@@ -147,7 +147,7 @@
                 Such mixing prevents independent analysis from taking place.
         }
 
-        @KQM::Fact "StuffinessAsLayerCollapse" {
+        @KQM::Statement "StuffinessAsLayerCollapse" {
             Q: 0.7
             Core:
                 Stuffiness arises when interpretive or analytical artifacts
@@ -158,14 +158,14 @@
                 distorts intent inference.
         }
 
-        @KQM::Fact "StuffinessMeasure" {
+        @KQM::Statement "StuffinessMeasure" {
             Q: 0.65 // draft-state of measure
             Core: Stuffiness can be treated as a measure of analytical pollution.
             It reflects the degree of overlap between analyzed artifacts and analysis results.
             Reason: This allows qualitative and potentially quantitative reasoning about the effect.
         }
 
-        @KQM::Fact "AnalysisPreservesAgency" {
+        @KQM::Statement "AnalysisPreservesAgency" {
             Q: 0.8
             Core:
                 Separation between analyzed artifacts and analysis results
@@ -176,7 +176,7 @@
                 rejection.
         }
 
-        @KQM::Fact "ReflectionLevel" {
+        @KQM::Statement "ReflectionLevel" {
             Q: 0.3
             Core:
                 In cyclic thinking processes, reflection is a necessary phase,
@@ -187,7 +187,7 @@
                 reside on the same layer as its subject.
         }
 
-        @KQM::Fact "ReflectionNature" {
+        @KQM::Statement "ReflectionNature" {
             Q: 0.3
             Core:
                 Reflection artifacts emerge as secondary products of technical or
@@ -198,7 +198,7 @@
                 meta-level understanding.
         }
 
-        @KQM::Fact "LowWeightReflexiveTailHandling" {
+        @KQM::Statement "LowWeightReflexiveTailHandling" {
             Q: 0.25
             Core:
                 Reflexive observations about a method may be retained within

@@ -27,3 +27,10 @@ Development log
 [morta] 2026-01-05: Добавлена семантическая ссылка на @KQM::Reference в определении SemanticReferencePreference
 [morta] 2026-01-05: Переименован факт SemanticReferencePreference в ReferencePreference, понижен Q для ReferenceBenefits с 0.3 до 0.15
 [morta] 2026-01-05: Переработан факт LinkagePreference - фокус на связывании новых фактов с корпусом через семантические ссылки
+[user] 2026-01-14: Выполнена тестовая задача - расчет асимптотической сложности пузырьковой сортировки: O(n²) худший/средний случай, O(n) лучший случай
+[user] 2026-01-14: Выполнена повторная оценка пузырьковой сортировки после обновления оркестрации
+[user] 2026-01-14: Извлечен урок из взаимодействия - добавлен факт MemoryDuality в orchestration.tome для прояснения двойственной структуры памяти
+[user] 2026-01-14: Обобщено определение Memory - расширено до всех форм фиксации знаний в KQM, не только Statement
+[user] 2026-01-14: Заменен устаревший термин @KQM::Fact на @KQM::Statement во всех томах директории Seed (9 файлов обновлено)
+[user] 2026-01-14: Преобразована быковая проблема MethodologyDevelopment из backlog в открытую задачу MethodologySeedDefinition в management.tome
+[user] 2026-01-14: Перемещена задача MethodologySeedDefinition в _status/plan.tome для структурированного планирования
