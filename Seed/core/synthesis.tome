@@ -6,11 +6,14 @@
 #include "FAL.tome"
 #include "IFS-unsorted.tome"
 
-@KQM::Definition "Synthesis" {
-  Clause:
+@KQM::Statement "Synthesis" {
+  Q: 0.9
+  Core:
     Synthesis определяет процессы создания, формализации и структурирования знаний в KQM-системе.
     Включает практики наполнения корпусов фактами, создания томов, синтеза новых знаний.
     Фокус на формализации и квантизации знаний в единицы, пригодные для хранения и повторного использования.
+  Reason:
+    Синтез необходим для превращения неструктурированных знаний в формализованные артефакты KQM.
   Examples:
     "LinkagePreference", "ReferenceBenefits", "KnowledgePersistenceAndPlacement"
 }

@@ -8,23 +8,16 @@
 
 @KQM::Definition "Definition" {
   Clause:
-    Definition определяет @KQM::Format для фиксации понятий и установления их структуры и смысла.
+    Definition является @FAL::MetaForm - формой, создающей формы (типы) для артефактов или атомов.
+    Каждое новое Definition создает новую @FAL::Form, представляющую конкретный тип данных или концепции,
+    экземпляры которой могут быть созданы и использованы в системе.
     Каждое Definition создает новую @FAL::Form с полями:
-    - Clause: текст определения и структуру атомов
-    - Examples: примеры атомов этой формы
+    - Clause: текст определения типа и его назначения
+    - Examples: примеры экземпляров этого типа
   Examples:
-    "Definition", "Artifact", "Statement", ...
+    "Definition", "Artifact", "Statement", "Model", "State", "Aspect", "Item", "Table"
 }
 
-@KQM::Definition "Format" {
-  Clause:
-    Format определяет @FAL::MetaForm, атомы которой — формы артефактов,
-    предназначенные для структурированного хранения @KQM::Artifact.
-    Реальные @FAL::Atom не обретают Format напрямую — эту метаформу обретают
-    специализированные формы данных для фиксации результатов деятельности в KQM.
-  Examples:
-    @KQM::Statement, @Management::Task, @Formats::Record.
-}
 
 @KQM::Definition "Artifact" {
   Clause:
@@ -36,12 +29,12 @@
     KQM-формы артефактов обеспечивают структурированную фиксацию с метаданными для трассировки и управления.
   Examples:
     Базы данных, документация, спецификации, чертежи, модели данных, фрагменты кода, compiled binary.
-    В KQM-контексте: @KQM::Statement, @Management::Task, @Formats::Record, тома знаний.
+    В KQM-контексте: @KQM::Statement, @Management::Task, @Management::Record, тома знаний.
 }
 
 @KQM::Definition "Statement" {
   Clause:
-    Statement определяет @KQM::Format для фиксации фрагментов знаний в виде утверждений.
+    Statement фиксирует фрагменты знаний в виде утверждений.
     Это частный случай @KQM::Artifact с обязательными компонентами:
     - Q: локальный и временный рейтинг достоверности (0.0-1.0) или inf для инвариантов т.е. "требований"
     - Core: описание содержания
