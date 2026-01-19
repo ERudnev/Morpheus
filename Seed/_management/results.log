@@ -26,7 +26,6 @@ Development log
 [morta] 2026-01-05: Перенесен и адаптирован факт SemanticReferenceUsage в synthesis.tome как SemanticReferencePreference с разделением на определение и преимущества
 [morta] 2026-01-05: Добавлена семантическая ссылка на @KQM::Reference в определении SemanticReferencePreference
 [morta] 2026-01-05: Переименован факт SemanticReferencePreference в ReferencePreference, понижен Q для ReferenceBenefits с 0.3 до 0.15
-[morta] 2026-01-05: Переработан факт LinkagePreference - фокус на связывании новых фактов с корпусом через семантические ссылки
 [user] 2026-01-14: Выполнена тестовая задача - расчет асимптотической сложности пузырьковой сортировки: O(n²) худший/средний случай, O(n) лучший случай
 [user] 2026-01-14: Выполнена повторная оценка пузырьковой сортировки после обновления оркестрации
 [user] 2026-01-14: Извлечен урок из взаимодействия - добавлен факт MemoryDuality в orchestration.tome для прояснения двойственной структуры памяти
@@ -34,3 +33,8 @@ Development log
 [user] 2026-01-14: Заменен устаревший термин @KQM::Fact на @KQM::Statement во всех томах директории Seed (9 файлов обновлено)
 [user] 2026-01-14: Преобразована быковая проблема MethodologyDevelopment из backlog в открытую задачу MethodologySeedDefinition в management.tome
 [user] 2026-01-14: Перемещена задача MethodologySeedDefinition в _status/plan.tome для структурированного планирования
+[morta] 2026-01-18: Переработан факт LinkagePreference - фокус на связывании новых фактов с корпусом через семантические ссылки
+[morta] 2026-01-18: Уточнены Statement'ы в orchestration2.tome - добавлен акцент на важности сохранения знаний и правила ведения лога
+[morta] 2026-01-18: Добавлено фундаментальное определение Artifact в начало KQM.tome как первый Statement тома
+[morta] 2026-01-18: Создано определение Definition как новый тип @KQM::Definition без Q для эксперимента с семантикой через ссылки
+[morta] 2026-01-18: Преобразованы определения Artifact, Tome, Corpus, Reference, Statement в формат @KQM::Definition с Clause/Examples и исправлены отступы форматирования
