@@ -3,11 +3,24 @@
 
 #include "Seed/core/KQM.tome"
 
-@KQM::Statement "PathConvention" {
-  Q: 0.9 // правило оформления
-  Core:
-    Все пути в проекте должны быть прямыми от общего корня.
-    Запрещены обратные пути типа "../".
-  Reason:
-    Факт появился как требование к простоте и консистентности структуры проекта.
+namespace style {
+
+  path_convention: @KQM::Statement {
+    Q: 0.9 // правило оформления
+    Core:
+      Все пути в проекте должны быть прямыми от общего корня.
+      Запрещены обратные пути типа "../".
+    Reason:
+      Факт появился как требование к простоте и консистентности структуры проекта.
+  }
+
+  naming_conventions: @KQM::Statement {
+    Q: 0.95 // правило именования
+    Core:
+      Артефакты, определяющие типы или формы, именуются в PascalCase (Task, Record, Statement).
+      Атомы (statements, instances) именуются в snake_case (user_interaction_logging, path_convention).
+      Это обеспечивает визуальное различие между типами и экземплярами.
+    Reason:
+      Google-style naming conventions adopted for consistency and readability in the KQM/FAL system.
+  }
 }

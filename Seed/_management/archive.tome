@@ -1,0 +1,37 @@
+// архив завершенных задач управления проектом.
+// Содержит выполненные таски для исторического отслеживания.
+// Задачи перемещаются сюда после завершения для поддержания актуальности plan.tome.
+
+#include "Seed/core/KQM.tome"
+#include "Seed/methods/management.tome"
+
+namespace archive {
+
+  convert_iqsm_definitions: @management::Task {
+    status: completed
+    goal:
+      Конвертировать указанные @KQM::Statement в @KQM::Definition в томе iQSM.
+      Учитывать правила именования из &style::naming_conventions
+      Учитывать обновленный способ создания @Definition (может понадобиться subtype of)
+    dependencies: &plan::refine_iqsm_conversion
+    subtasks:
+      ✅ Конвертировать &iQSM::Model
+      ✅ Конвертировать &iQSM::State
+      ✅ Конвертировать &iQSM::Identifier
+      ✅ Конвертировать &iQSM::Item
+      ✅ Конвертировать &iQSM::Aspect
+      ✅ Конвертировать &iQSM::Table
+      ✅ Конвертировать &iQSM::Operator
+      ✅ Конвертировать &iQSM::Functor
+      ✅ Конвертировать &iQSM::Validator
+      ✅ Конвертировать &iQSM::StructuralValidator
+      ✅ Конвертировать &iQSM::StateHolder
+      ✅ Конвертировать &iQSM::Change
+      ✅ Конвертировать &iQSM::Resource
+      ✅ Конвертировать &iQSM::Basis
+    reason:
+      Приведение iQSM к строгой форме согласно обновленной семантике Definition.
+      Обеспечение точности терминологии и архитектурной чистоты.
+  }
+
+}

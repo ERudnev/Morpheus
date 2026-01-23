@@ -1,4 +1,6 @@
 Development log
+&contract::experience_management - requires logging of agent actions
+@management::Record - defines the format for log entries
 
 [user] 2026-01-04: Начата работа, доложена готовность
 [user] 2026-01-04: Создана папка Management с томами Goal и Plans
@@ -38,3 +40,22 @@ Development log
 [morta] 2026-01-18: Добавлено фундаментальное определение Artifact в начало KQM.tome как первый Statement тома
 [morta] 2026-01-18: Создано определение Definition как новый тип @KQM::Definition без Q для эксперимента с семантикой через ссылки
 [morta] 2026-01-18: Преобразованы определения Artifact, Tome, Corpus, Reference, Statement в формат @KQM::Definition с Clause/Examples и исправлены отступы форматирования
+[grok] 2026-01-19: Удалено определение Format из KQM.tome как избыточная абстракция
+[grok] 2026-01-19: Переработаны определения в management.tome - заменен "фиксирует" на "@FAL::Form фиксации" для точности
+[grok] 2026-01-19: Добавлены задачи "StandardizeIQSM" и "CompleteJ1Technology" в backlog проекта Seed
+[grok] 2026-01-19: Приведен том backlog к стандартному виду - убрана обертка @KQM::Tome, добавлен стандартный заголовок
+[morta] 2026-01-19: Создан инструмент extract_forms.py в папке Tools для извлечения списка форм из томов
+[morta] 2026-01-21: Выполнена полная трансформация архитектуры KQM/FAL в новый декларативный синтаксис с явными семантическими ссылками
+[morta] 2026-01-21: Добавлены @ для ссылок на типы определений и & для ссылок на экземпляры артефактов
+[morta] 2026-01-21: Конвертированы все тома в новый формат: KQM.tome, FAL.tome, synthesis.tome, IFS-unsorted.tome, management.tome, contract.tome
+[morta] 2026-01-21: Создана иерархия специализаций определений с subtype of для правильной типизации
+[morta] 2026-01-21: Улучшены определения для максимальной семантической точности и понятности для ИИ
+[morta] 2026-01-21: Добавлены namespace'ы и Google-style naming (snake_case) для statements
+[morta] 2026-01-21: Создан новый statement user_identity_visibility в contract.tome для персонализации взаимодействия
+[morta] 2026-01-21: Установлены кросс-ссылки между томами для связности архитектуры
+[morta] 2026-01-21: Исправлено имя пользователя в логах согласно &contract::user_identity_visibility, добавлены семантические ссылки на основания лога (&contract::experience_management, @management::Record)
+[morta] 2026-01-23: Завершена задача convert_iqsm_definitions - конвертированы все основные определения iQSM из Statement в Definition формат с правильной типизацией
+[morta] 2026-01-23: Создан Archive.tome для хранения завершенных задач проекта
+[morta] 2026-01-23: Перемещена задача convert_iqsm_definitions из plan.tome в Archive.tome для поддержания актуальности активного планирования
+[morta] 2026-01-23: Начата работа над проблемой define_task_statuses - создана задача в plan.tome для стандартизации системы статусов
+[morta] 2026-01-23: Исправлен goal.tome - заменены упоминания Morpheus на Seed, переименован statement morpheus_end_state на seed_end_state

@@ -6,33 +6,34 @@
 
 #include "FAL.tome"
 
-@KQM::Definition "Definition" {
-  Clause:
-    Definition является @FAL::MetaForm - формой, создающей формы (типы) для артефактов или атомов.
-    Каждое новое Definition создает новую @FAL::Form, представляющую конкретный тип данных или концепции,
-    экземпляры которой могут быть созданы и использованы в системе.
-    Каждое Definition создает новую @FAL::Form с полями:
-    - Clause: текст определения типа и его назначения
-    - Examples: примеры экземпляров этого типа
-  Examples:
-    "Definition", "Artifact", "Statement", "Model", "State", "Aspect", "Item", "Table"
-}
+namespace KQM {
 
+  Definition: @FAL::MetaForm {
+    Clause:
+      Если некий Артефакт задает @FAL::Form других Артефактов, он считается их Определением.
+      &KQM::Definition - механизм создания такимх форм: "MyForm: @Definition ..."
+      Каждый Артефакт класса Definition создает новую @FAL::Form с полями:
+      - Clause: текст определения типа и его назначения
+      - Examples: примеры экземпляров этого типа
+      Формально, каждое Определение хранится в виде Артефакта
+    Examples:
+      "Definition", "Artifact", "Statement", "Model", "State", "MyAspectType" 
+  }
 
-@KQM::Definition "Artifact" {
-  Clause:
-    Артефакт — персистентно зафиксированный результат интеллектуальной или практической деятельности,
-    сохраняемый вне текущего контекста исполнения для последующего использования.
-    В общем случае может использовать любые формы хранения, включая традиционные форматы.
-    В контексте методологии KQM артефакт может быть представлен в специализированных формах
-    для семантической организации и управления знаниями (@KQM::Statement, @Management::Task и др.).
-    KQM-формы артефактов обеспечивают структурированную фиксацию с метаданными для трассировки и управления.
-  Examples:
-    Базы данных, документация, спецификации, чертежи, модели данных, фрагменты кода, compiled binary.
-    В KQM-контексте: @KQM::Statement, @Management::Task, @Management::Record, тома знаний.
-}
+  Artifact: @Definition subtype of @FAL::MetaForm {
+    Clause:
+      Артефакт — персистентно зафиксированный результат интеллектуальной или практической деятельности,
+      сохраняемый вне текущего контекста исполнения для последующего использования.
+      В общем случае может использовать любые формы хранения, включая традиционные форматы.
+      В контексте методологии KQM артефакт может быть представлен в специализированных формах
+      для семантической организации и управления знаниями (@KQM::Statement, @Management::Task и др.).
+      KQM-формы артефактов обеспечивают структурированную фиксацию с метаданными для трассировки и управления.
+    Examples:
+      Базы данных, документация, спецификации, чертежи, модели данных, фрагменты кода, compiled binary.
+      В KQM-контексте: @KQM::Statement, @Management::Task, @Management::Record, тома знаний.
+  }
 
-@KQM::Definition "Statement" {
+  Statement: @Definition subtype of @Artifact {
   Clause:
     Statement фиксирует фрагменты знаний в виде утверждений.
     Это частный случай @KQM::Artifact с обязательными компонентами:
@@ -42,103 +43,111 @@
     Statement представляет собой единицу квантизации знаний с определенной достоверностью.
   Examples:
     "FALIsUsed", "ProjectNeedsMoreUnitTests"
-}
+  }
 
-@KQM::Definition "Reference" {
-  Clause:
-    Упоминание артефакта F как &F означает "конкретный экземпляр артефакта с именем F"
-    Упоминание определения D как @D означает "Тип артефакта, заданный определением F"
-    Следовательно:
-    - &F ~ @KQM::Artifact F
-    - @D ~ @FAL::Definition D
-  Examples:
-    &KQM::TomeStructureIsAcyclic, @FAL::MetaForm, &Artifact, @Definition
-}
+  Reference: @Definition subtype of @FAL::MetaForm {
+    Clause:
+      Упоминание артефакта F как &F означает "конкретный экземпляр артефакта с именем F"
+      Упоминание определения D как @D означает "Тип артефакта, заданный определением F"
+      Следовательно:
+      - &F ~ @KQM::Artifact F
+      - @D ~ @FAL::Definition D
+    Examples:
+      &KQM::TomeStructureIsAcyclic, @FAL::MetaForm, &Artifact, @Definition
+  }
 
-@KQM::Definition "Tome" {
-  Clause:
-    Том является коллекцией @KQM::Artifact объединенных общим смыслом.
-    Технически, Том является сам Артефактом и франится в отдельном файле.
-    Имя Тома может рассматриваться как пространство имен для содержащихся в нем @FAL::Fact
-  Examples:
-    &FAL "FAL.tome", "KQM.tome", "synthesis.tome", "formats.tome"
-}
+  Tome: @Definition subtype of @Artifact {
+    Clause:
+      Том является коллекцией @KQM::Artifact объединенных общим смыслом.
+      Технически, Том является сам Артефактом и франится в отдельном файле.
+      Имя Тома может рассматриваться как пространство имен для содержащихся в нем @FAL::Fact
+    Examples:
+      &FAL "FAL.tome", "KQM.tome", "synthesis.tome", "formats.tome"
+  }
 
-@KQM::Statement "TomeStructureIsAcyclic" {
-  Q: 0.6
-  Core:
-    В языке KQM логические связи между Томами подчиняются инварианту &FAL::AB-BA:
-    Если Том А знает о Томе Б, то для Тома Б он невидим и не иожет явно ссылаться на его артефакты
-  Reason:
-    Тома являются Формами верхнего уровня. Допущение циклов между ними разрушает
-    односторонность когнитивных зависимостей и делает структуру корпуса неустойчивой.
-}
+  some_statements_are_temporary: @Statement {
+    Q: 0.1 // temporary
+    Core: Some statements are "weak" and not so important in large contexts
+    Reason: User needs some place/Form to write notes at least
+  }
 
-@KQM::Statement "FactNamingConvention" {
-  Q: 0.5 // semantic bootstrap
-  Core:
-    Имена @FAL::Atom в @FAL::Form "Statement" - строки на Английском без пробелов и специальных символов.
-    Допустимы только буквы, цифры и знак подчеркивания.
-    Имя факта не должно содержать даже в мягкой форме указание на его тип (минимум тавтологии).
-  Reason:
-    Такая форма имен весьма удобна при сементическом связывании, чиста и человеко-читаема
-}
+  tome_structure_is_acyclic: @KQM::Statement {
+    Q: 0.6
+    Core:
+      В языке KQM логические связи между Томами подчиняются инварианту &FAL::AB-BA:
+      Если Том А знает о Томе Б, то для Тома Б он невидим и не иожет явно ссылаться на его артефакты
+    Reason:
+      Тома являются Формами верхнего уровня. Допущение циклов между ними разрушает
+      односторонность когнитивных зависимостей и делает структуру корпуса неустойчивой.
+  }
 
-@KQM::Statement "CompactFactFormat" {
-  Q: 0.1 // вкусовщина
-  Core:
-    Если поле Core или Reason факта умещается в одну строку, допустима компактная форма записи.
-    Компактная форма: поле сразу после двоеточия без многострочной структуры.
-  Reason:
-    Компактная форма улучшает читаемость для простых фактов и экономит место в томе
-}
+  fact_naming_convention: @KQM::Statement {
+    Q: 0.5 // semantic bootstrap
+    Core:
+      Имена @FAL::Atom в @FAL::Form "Statement" - строки на Английском без пробелов и специальных символов.
+      Допустимы только буквы, цифры и знак подчеркивания.
+      Имя факта не должно содержать даже в мягкой форме указание на его тип (минимум тавтологии).
+    Reason:
+      Такая форма имен весьма удобна при сементическом связывании, чиста и человеко-читаема
+  }
 
-@KQM::Statement "ReferenceNamespaceSyntax" {
-  Q: 0.5 // semantic bootstrap
-  Core:
-    Ссылки на компоненты других томов используют двойное двоеточие "::" для разделения namespace и имени.
-    Формат: @TomeName::ComponentName или &TomeName::ComponentName
-  Reason:
-    Единый синтаксис ссылок обеспечивает читаемость и предотвращает неоднозначность в больших корпусах
-}
+  compact_statement_format: @KQM::Statement {
+    Q: 0.1 // recommendation
+    Core:
+      Если поле Core или Reason утверждения умещается в одну строку, допустима компактная форма записи.
+      Компактная форма: поле сразу после двоеточия без многострочной структуры.
+    Reason:
+      Компактная форма улучшает читаемость для простых фактов и экономит место в томе
+  }
 
-@KQM::Statement "ReasonsAsCauses" {
-  Q: 0.8 // важное правило формата
-  Core:
-    Reason каждого Statement объясняет ПРИЧИНУ его появления, а не следствие или назначение
-    Reason отвечает на вопрос "почему этот statement был создан?" - описывает проблему или наблюдение
-  Reason:
-    Reason как причина (не следствие) обеспечивает traceability создания знаний и предотвращает путаницу в назначении
-}
-@KQM::Statement "UniformDeclarationForm" {
-  Q: 0.25
-  Core:
-    Consistency in how structural elements (tomes, facts) are declared
-    reduces interpretative entropy and stabilizes parsing by both humans
-    and analytical agents.
-  Reason:
-    Mixed declaration styles introduce syntactic asymmetry that can act
-    as an unintended semantic signal.
-    While not affecting the method itself, uniformity improves corpus
-    survivability and lowers cognitive friction.
-}
+  reference_namespace_syntax: @KQM::Statement {
+    Q: 0.5 // semantic bootstrap
+    Core:
+      Ссылки на компоненты других пространств имен используют двойное двоеточие "::" для разделения namespace и имени.
+      Формат: @namespace_name::definition_name или &namespace_name::atom_name
+    Reason:
+      Единый синтаксис ссылок обеспечивает читаемость и предотвращает неоднозначность в больших корпусах
+  }
 
-@KQM::Statement "ReferencesAndNamespaces" {
-  Q: 0.01 // syntax recommendation
-  Core:
-    @Fact F of @Tome T can be referenced as &F inside of T and &T::F outside
-    full-format &T::F is accesable instead of T but simpliest &F is welcome
-    The same is for Forms-references like @T::F
-  Reason:
-    this C++ style reference and namespace semantics
-}
+  reasons_as_causes: @KQM::Statement {
+    Q: 0.8 // важное правило формата
+    Core:
+      Reason каждого Statement содержит ПРИЧИНУ его появления, а не обьяснение самого утверждения или назначение
+      Reason отвечает на вопрос "почему этот statement был создан?" - описывает проблему или наблюдение
+    Reason:
+      Reason как причина (не следствие) обеспечивает traceability создания знаний и предотвращает путаницу в назначении
+  }
 
-@KQM::Statement "NounBasedDefinitions" {
-  Q: 0.6 // style recommendation
-  Core:
-    Definitions should use single noun words whenever possible.
-    Each definition introduces one primary concept through a substantive term.
-  Reason:
-    Single noun definitions enhance clarity, memorability and semantic precision.
-    They create stable cognitive anchors and reduce interpretive ambiguity in knowledge systems.
+  uniform_declaration_form: @KQM::Statement {
+    Q: 0.25
+    Core:
+      Consistency in how structural elements (tomes, facts) are declared
+      reduces interpretative entropy and stabilizes parsing by both humans
+      and analytical agents.
+    Reason:
+      Mixed declaration styles introduce syntactic asymmetry that can act
+      as an unintended semantic signal.
+      While not affecting the method itself, uniformity improves corpus
+      survivability and lowers cognitive friction.
+  }
+
+  references_and_namespaces: @KQM::Statement {
+    Q: 0.01 // syntax recommendation
+    Core:
+      @Artifact A of namespace N can be referenced as &A inside of N and &N::A outside
+      full-format &N::A is accessible instead of N but simplest &A is welcome
+      The same applies for all types of artifacts: definitions, atoms, statements
+    Reason:
+      this C++ style reference and namespace semantics
+  }
+
+  noun_based_definitions: @KQM::Statement {
+    Q: 0.6 // style recommendation
+    Core:
+      Definitions should use single noun words whenever possible.
+      Each definition introduces one primary concept through a substantive term.
+    Reason:
+      Single noun definitions enhance clarity, memorability and semantic precision.
+      They create stable cognitive anchors and reduce interpretive ambiguity in knowledge systems.
+  }
 }
