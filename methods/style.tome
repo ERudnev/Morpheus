@@ -1,12 +1,11 @@
 // Том стиля и оформления в рамках методологии KQM.
 // Определяет соглашения об именовании, форматировании и организации кода и структур проекта.
 
-#include "Seed/core/KQM.tome"
+#using namespace KQM(file: "core/KQM.tome")
 
 namespace style {
 
-  path_convention: @KQM::Statement {
-    Q: 0.9 // правило оформления
+  path_convention: @Statement(~0.9) {
     Core:
       Все пути в проекте должны быть прямыми от общего корня.
       Запрещены обратные пути типа "../".
@@ -14,13 +13,21 @@ namespace style {
       Факт появился как требование к простоте и консистентности структуры проекта.
   }
 
-  naming_conventions: @KQM::Statement {
-    Q: 0.95 // правило именования
+  naming_conventions: @Statement(~0.95) {
     Core:
       Артефакты, определяющие типы или формы, именуются в PascalCase (Task, Record, Statement).
       Атомы (statements, instances) именуются в snake_case (user_interaction_logging, path_convention).
       Это обеспечивает визуальное различие между типами и экземплярами.
     Reason:
       Google-style naming conventions adopted for consistency and readability in the KQM/FAL system.
+  }
+
+  definitions_first: @Statement(~0.6) {
+    Core:
+      Правило хорошего тона для любого @Tome: сначала размещать определения (@Definition), если они есть,
+      а затем прочие артефакты (включая @Statement).
+    Reason:
+      Снижает когнитивный шум: читатель (и LLM) сначала получает словарь тома, а затем утверждения,
+      использующие этот словарь.
   }
 }

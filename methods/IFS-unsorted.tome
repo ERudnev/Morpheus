@@ -3,12 +3,11 @@
 // не задаётся императивно, а возникает как вычислимое следствие
 // анализа структурированного поля фактов и артефактов.
 
-#include "KQM.tome"
+#using namespace KQM(file: "core/KQM.tome")
 
 namespace IFS {
 
-  intentional_field_shaping: @KQM::Statement {
-    Q: 1.0
+  intentional_field_shaping: @Statement(~1.0) {
     Core:
       Intentional Field Shaping (IFS) is a method of guiding a system
       by declaratively shaping a structured field of statements,
@@ -19,8 +18,7 @@ namespace IFS {
       rather than relying on imperative control.
   }
 
-  intent_as_context_function: @KQM::Statement {
-    Q: 1.0
+  intent_as_context_function: @Statement(~1.0) {
     Core:
       Intent is not an intrinsic property of a token, statement, or artifact,
       but a function of how a fragment of context is used within a
@@ -31,8 +29,7 @@ namespace IFS {
       application or interpretation.
   }
 
-  intent_activation_through_analysis: @KQM::Statement {
-    Q: 0.85
+  intent_activation_through_analysis: @Statement(~0.85) {
     Core:
       Intent becomes observable only through analysis and subsequent
       application, not as a static attribute of stored statements.
@@ -41,8 +38,7 @@ namespace IFS {
       activates their relevance.
   }
 
-  core_survivability: @KQM::Statement {
-    Q: 0.9
+  core_survivability: @Statement(~0.9) {
     Core:
       A corpus is considered structurally valid if its structural kernel remains
       self-consistent and operational while ignoring all
@@ -53,8 +49,7 @@ namespace IFS {
       methodological substance rather than explanatory scaffolding.
   }
 
-  anti_imperative_principle: @KQM::Statement {
-    Q: 1.0
+  anti_imperative_principle: @Statement(~1.0) {
     Core:
       Direct imperative specification of intent is avoided in favor of
       contextual dominance derived from structured artifacts.
@@ -63,8 +58,7 @@ namespace IFS {
       a rich corpus and reduce system stability.
   }
 
-  analysis_priority: @KQM::Statement {
-    Q: 0.85
+  analysis_priority: @Statement(~0.85) {
     Core:
       Analysis is the primary operation applied to artifacts of a
       given domain. It precedes interpretation, evaluation, and
@@ -74,8 +68,7 @@ namespace IFS {
       and their interpretations.
   }
 
-  analysis_hierarchy: @KQM::Statement {
-    Q: 0.85
+  analysis_hierarchy: @Statement(~0.85) {
     Core:
       Analysis establishes a hierarchy between artifacts: analyzed
       artifacts occupy a lower level than analysis results.
@@ -84,8 +77,7 @@ namespace IFS {
       domain-specific.
   }
 
-  artifact_purity: @KQM::Statement {
-    Q: 1.0
+  artifact_purity: @Statement(~1.0) {
     Core:
       Artifacts intended for analysis must not contain results of
       their own analysis.
@@ -94,8 +86,7 @@ namespace IFS {
       analytical process.
   }
 
-  analytical_origin_vs_structural_role: @KQM::Statement {
-    Q: 0.8
+  analytical_origin_vs_structural_role: @Statement(~0.8) {
     Core:
       The origin of a statement (analysis, reflection, iteration) is independent
       from its structural role within a corpus.
@@ -107,8 +98,7 @@ namespace IFS {
       Structural role must be evaluated by function, not by genesis.
   }
 
-  core_emergence_through_analytical_detachment: @KQM::Statement {
-    Q: 0.9
+  core_emergence_through_analytical_detachment: @Statement(~0.9) {
     Core:
       A statement becomes part of the structural kernel only when it remains operationally
       valid after detaching from the analysis that produced it.
@@ -119,8 +109,7 @@ namespace IFS {
       not core structure.
   }
 
-  intent_neutrality_check: @KQM::Statement {
-    Q: 0.7
+  intent_neutrality_check: @Statement(~0.7) {
     Core:
       A statement or methodological statement is intent-neutral if its meaning
       remains stable when directive, forceful, or corrective terms are
@@ -134,8 +123,7 @@ namespace IFS {
       from analysis, rather than being pre-shaped by wording.
   }
 
-  stuffiness_effect: @KQM::Statement {
-    Q: 0.7
+  stuffiness_effect: @Statement(~0.7) {
     Core:
       Stuffiness is a negative cognitive effect caused by mixing
       analyzed artifacts and analysis results in the same
@@ -144,8 +132,7 @@ namespace IFS {
       Such mixing prevents independent analysis from taking place.
   }
 
-  stuffiness_as_layer_collapse: @KQM::Statement {
-    Q: 0.7
+  stuffiness_as_layer_collapse: @Statement(~0.7) {
     Core:
       Stuffiness arises when interpretive or analytical artifacts
       are co-located with the statement layer they analyze, effectively
@@ -155,8 +142,7 @@ namespace IFS {
       distorts intent inference.
   }
 
-  stuffiness_measure: @KQM::Statement {
-    Q: 0.65 // draft-state of measure
+  stuffiness_measure: @Statement(~0.65) {
     Core:
       Stuffiness can be treated as a measure of analytical pollution.
       It reflects the degree of overlap between analyzed artifacts and analysis results.
@@ -164,8 +150,7 @@ namespace IFS {
       This allows qualitative and potentially quantitative reasoning about the effect.
   }
 
-  analysis_preserves_agency: @KQM::Statement {
-    Q: 0.8
+  analysis_preserves_agency: @Statement(~0.8) {
     Core:
       Separation between analyzed artifacts and analysis results
       preserves agency, allowing observers to perform their own
@@ -175,8 +160,7 @@ namespace IFS {
       rejection.
   }
 
-  reflection_level: @KQM::Statement {
-    Q: 0.3
+  reflection_level: @Statement(~0.3) {
     Core:
       In cyclic thinking processes, reflection is a necessary phase,
       and artifacts of reflection naturally belong to a higher
@@ -186,8 +170,7 @@ namespace IFS {
       reside on the same layer as its subject.
   }
 
-  reflection_nature: @KQM::Statement {
-    Q: 0.3
+  reflection_nature: @Statement(~0.3) {
     Core:
       Reflection artifacts emerge as secondary products of technical or
       operational activity and are not primary products of the
@@ -197,8 +180,7 @@ namespace IFS {
       meta-level understanding.
   }
 
-  low_weight_reflexive_tail_handling: @KQM::Statement {
-    Q: 0.25
+  low_weight_reflexive_tail_handling: @Statement(~0.25) {
     Core:
       Reflexive observations about a method may be retained within
       the same corpus with deliberately reduced weight.

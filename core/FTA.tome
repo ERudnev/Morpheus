@@ -1,0 +1,55 @@
+// FTA = Form Type Algebra
+// Том про отношения между формами и конструкторы форм.
+// Цель: дать строгий слой "алгебры форм" между FAL (Form/Atom) и прикладными томами.
+
+#using namespace FAL(file: "core/FAL.tome")
+#using namespace KQM(file: "core/KQM.tome")
+
+namespace FTA {
+
+  Abstract: @Definition(@Form) {
+    Clause:
+      Абстрактная форма, обобщающая множество (конечное или открытое) родственных форм
+    Examples:
+      @Definition, @Articact       
+  }
+
+  FormOperator: @Definition(@Abstract) {
+    Clause:
+      FormOperator — способ задавать (вычислять) @Form на основе других @Form.
+      Атомы FormOperator — конкретные операторы, которые принимают одну или несколько форм
+      и задают вычисленную форму как результат применения.
+      FormOperator относится к meta-уровню: он описывает правила построения форм, а не runtime-отношения между @Atom.
+    Notation:
+      @<op>(@A1, ..., @An)
+      // <op> — атом @FormOperator; Ai — @Form; результат — @Form
+    Examples:
+      "@MyOp(@MyForm)"
+      "@MyOp2(@A, @B)"
+  }
+
+  Template: @Definition(@FormOperator) {
+    Clause:
+      Template — частный случай @FormOperator: типовой оператор, который задаётся через параметризацию
+      и порождает вычисленную @Form после подстановки конкретных аргументов.
+      В C++-проекции: "template <...> my_templ" является атомом @Template, а "my_templ<int>" — вычисленная @Form.
+    Notation:
+      @<template_name>(@A)
+    Examples:
+      "@MyTemplate(@MyArg)"
+      "@MyTemplate2(@A, @B) // арность фиксируется нотацией конкретного оператора"
+  }
+
+  Container: @Definition(@FormOperator) {
+    Clause:
+      Container — квантор совокупности: конструктор форм, фиксирующий взгляд "множество как одно".
+      Container допускает свойства целого (метаданные, индексы, отношения между элементами),
+      но не фиксирует физическое хранение, порядок или контейнер как реализацию.
+    Notation:
+      @Container(@A)
+      // A — @Form; @Container(@A) — вычисленная форма контейнера элементов A
+    Examples:
+      "MyBacklog: @Definition(@Container(@MyProblem)) { ... }"
+  }
+}
+

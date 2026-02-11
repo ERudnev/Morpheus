@@ -2,14 +2,13 @@
 // Определяет практики синтеза, формализации и структурирования знаний
 // фокусируется на процессах создания томов и поддержания качества корпуса
 
-#include "KQM.tome"
-#include "FAL.tome"
-#include "IFS-unsorted.tome"
+#using namespace KQM(file: "core/KQM.tome")
+#using namespace FAL(file: "core/FAL.tome")
+#using namespace IFS(file: "methods/IFS-unsorted.tome")
 
 namespace synthesis {
 
-  synthesis: @KQM::Statement {
-    Q: 0.9
+  synthesis: @Statement(~0.9) {
     Core:
       Synthesis определяет процессы создания, формализации и структурирования знаний в KQM-системе.
       Включает практики наполнения корпусов statements, создания томов, синтеза новых знаний.
@@ -20,20 +19,18 @@ namespace synthesis {
       linkage_preference, reference_benefits, knowledge_persistence_and_placement
   }
 
-  linkage_preference: @KQM::Statement {
-    Q: 0.7 // рекомендация
+  linkage_preference: @Statement(~0.7) {
     Core:
-      Новые statements лучше связываются с корпусом, когда содержат семантические ссылки @KQM::Reference.
-      Ссылки могут быть на statements &namespace_name или на определения @namespace_name::definition_name.
+      Новые statements лучше связываются с корпусом, когда содержат семантические ссылки @Reference.
+      Ссылки пишутся без namespace-квалификации; доступ к внешним namespace обеспечивается через #using.
     Reason:
       При наблюдении за созданием новых statements замечено, что они слабо связывались без явных ссылок.
   }
 
-  reference_benefits: @KQM::Statement {
-    Q: 0.15 // вспомогательные соображения
+  reference_benefits: @Statement(~0.15) {
     Core:
-      Семантические ссылки &namespace_name::atom_name предоставляют преимущества:
-      - явная зависимость между пространствами имен
+      Семантические ссылки &atom_name (при наличии #using) предоставляют преимущества:
+      - явная зависимость между томами через #using
       - возможность отслеживания связей
       - устойчивость к переименованиям
       - читаемость для анализа зависимостей
@@ -41,8 +38,7 @@ namespace synthesis {
       Эти преимущества объясняют предпочтительность семантических ссылок в практике синтеза знаний.
   }
 
-  knowledge_persistence_and_placement: @KQM::Statement {
-    Q: 0.2 // сырая формулировка
+  knowledge_persistence_and_placement: @Statement(~0.2) {
     Core:
       Опыт работы над контрактом показал необходимость правильного извлечения и размещения знаний.
       Уточнено понятие knowledge_persistence: опыт накапливается в чате, но формальным запоминанием считается только KQM-запись.

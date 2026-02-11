@@ -2,33 +2,33 @@
 // Содержит выполненные таски для исторического отслеживания.
 // Задачи перемещаются сюда после завершения для поддержания актуальности plan.tome.
 
-#include "Seed/core/KQM.tome"
-#include "Seed/methods/management.tome"
+#using namespace KQM(file: "core/KQM.tome")
+#using namespace management(file: "methods/management.tome")
+#using namespace plan(file: "_management/plan.tome")
+#using namespace style(file: "methods/style.tome")
+#using namespace iQSM(file: "technologies/iQSM.tome")
 
 namespace archive {
 
-  convert_iqsm_definitions: @management::Task {
+  convert_iqsm_definitions: @Task {
     status: completed
     goal:
-      Конвертировать указанные @KQM::Statement в @KQM::Definition в томе iQSM.
-      Учитывать правила именования из &style::naming_conventions
-      Учитывать обновленный способ создания @Definition (может понадобиться subtype of)
-    dependencies: &plan::refine_iqsm_conversion
+      Конвертировать указанные @Statement в @Definition в томе iQSM.
+      Учитывать правила именования из &naming_conventions
+      Учитывать обновленный способ создания @Definition (может понадобиться @Subtype(...))
+    dependencies: &refine_iqsm_conversion
     subtasks:
-      ✅ Конвертировать &iQSM::Model
-      ✅ Конвертировать &iQSM::State
-      ✅ Конвертировать &iQSM::Identifier
-      ✅ Конвертировать &iQSM::Item
-      ✅ Конвертировать &iQSM::Aspect
-      ✅ Конвертировать &iQSM::Table
-      ✅ Конвертировать &iQSM::Operator
-      ✅ Конвертировать &iQSM::Functor
-      ✅ Конвертировать &iQSM::Validator
-      ✅ Конвертировать &iQSM::StructuralValidator
-      ✅ Конвертировать &iQSM::StateHolder
-      ✅ Конвертировать &iQSM::Change
-      ✅ Конвертировать &iQSM::Resource
-      ✅ Конвертировать &iQSM::Basis
+      ✅ Конвертировать &Model
+      ✅ Конвертировать &State
+      ✅ Конвертировать &Identifier
+      ✅ Конвертировать &Item
+      ✅ Конвертировать &Aspect
+      ✅ Конвертировать &Operator
+      ✅ Конвертировать &Functor
+      ✅ Конвертировать &Validator
+      ✅ Конвертировать &StructuralValidator
+      ✅ Конвертировать &StateHolder
+      ✅ Конвертировать &Resource
     reason:
       Приведение iQSM к строгой форме согласно обновленной семантике Definition.
       Обеспечение точности терминологии и архитектурной чистоты.

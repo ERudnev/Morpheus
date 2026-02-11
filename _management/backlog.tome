@@ -2,13 +2,11 @@
 // Содержит сырые идеи, проблемы и направления развития.
 // Адаптивен и корректируется по мере получения новой информации.
 
-#include "Seed/core/KQM.tome"
-#include "Seed/methods/management.tome"
+#using namespace KQM(file: "core/KQM.tome")
 
 namespace backlog {
 
-  process_architecture: @KQM::Statement {
-    Q: 0.7 // архитектурная задача
+  process_architecture: @Statement(~0.7) {
     Core:
       Систематизировать уровни рефлексии и процессы в Management.
       Определить роль IFS в методах работы с мыслями и томами.
@@ -19,8 +17,7 @@ namespace backlog {
       Формирование целостной архитектуры управления процессами развития.
   }
 
-  standardize_iqsm: @KQM::Statement {
-    Q: 0.8 // задача стандартизации
+  standardize_iqsm: @Statement(~0.8) {
     Core:
       Привести том iQSM к строгому виду согласно обновленным определениям KQM.
       Конвертировать подходящие Statement в Definition.
@@ -29,14 +26,5 @@ namespace backlog {
       Обеспечение консистентности корпуса и точности терминологии.
   }
 
-  complete_j1_technology: @KQM::Statement {
-    Q: 0.7 // задача развития
-    Core:
-      Привести том J1 к рабочему виду.
-      Определить содержание и структуру технологии J1.
-      Интегрировать с остальным корпусом Seed.
-    Reason:
-      Завершение начатой работы над технологией J1 для полноты корпуса.
-  }
 
 }

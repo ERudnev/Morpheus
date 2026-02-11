@@ -2,13 +2,11 @@
 // Определяет желаемое конечное состояние системы как фиксированную точку.
 // Фундаментальные принципы и характеристики результата, к которому мы стремимся.
 
-#include "Seed/core/KQM.tome"
-#include "Seed/methods/management.tome"
+#using namespace KQM(file: "core/KQM.tome")
 
 namespace goal {
 
-  seed_end_state: @KQM::Statement {
-    Q: inf // фиксированная цель проекта
+  seed_end_state: @Statement(inf) {
     Core:
       Seed должен завершиться имея состояние переносимого зерна для старта проектов.
     Reason:

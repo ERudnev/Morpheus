@@ -6,11 +6,11 @@
 //
 // "Законы природы ничего не знают об Английском Языке, но могут быть им описаны" (если кому-то режет глаз форма записи этого текста)
 
-#using "KQM.tome" as semantics
+#using namespace KQM(file: "core/KQM.tome")
 
 namespace FAL {
 
-  Atom: @KQM::Definition {
+  Atom: @Definition {
     Clause:
       Atom — единая неделимая адресуемая сущность своего слоя абстракции.
       Обобщает понятия "объект, реализация интерфейса, данные" как "экземпляр, инстанс, частный случай адресуемый".
@@ -18,7 +18,7 @@ namespace FAL {
       "john_doe_user", "app_config_v2", "text_analyzer_process", "customer_record_456", "http_client_impl"
   }
 
-  Form: @KQM::Definition {
+  Form: @Definition {
     Clause:
       Form — класс атомов одного слоя абстракции, задающий их структуру и допустимые связи.
       Обобщает понятия "класс, интерфейс, протокол" как "способ, рамка, договоренность".
@@ -26,28 +26,15 @@ namespace FAL {
       "UserAccount", "AppConfiguration", "DataProcessingTask", "CustomerRecord", "NetworkInterface"
   }
 
-  MetaForm: @KQM::Definition subtype of @Form {
+  MetaForm: @Definition {
     Clause:
-      MetaForm — Форма, Атомы которой сами по себе являются Формами.
-      Для любого непустого множества F Форм {MyFormX, MyFormY,...} может существовать @Form MyForms,
-      где каждый из F - ее @Atom.
-      Верно следующее: любая МетаФорма является Формой.
+      MetaForm — @Form, чьи @Atom интерпретируются как @Form (то есть "формы как атомы мета-уровня").
+      Это не @Container(@Form): MetaForm фиксирует рефикацию форм, а Container фиксирует "множество как одно".
     Examples:
-      "EntityTypeCollection", "ProgrammingLanguageTypeSystem", "ClassGenerator", "TemplateLibrary"
+      "MyTypeSystem", "MySchemaLanguage", "MyFormVocabulary", "MyClassGenerator"
   }
 
-  fundamental_definitions: @KQM::Statement {
-    Q: 0.2 // explaination
-    Core:
-      Пара ключевых определений тома по сути:
-      - Form (Форма): что может быть
-      - Atom (Атом): что есть
-    Reason:
-      Понимание на базовом уровне получено в рассуждениях
-  }
-
-  AB-BA: @KQM::Statement {
-    Q: inf // cognitive law
+  AB-BA: @Statement(inf) {
     Core:
       "Если тип А знает о типе Б, то тип Б не должен даже подозревать о существовании типа А"
       Критерий AB-BA выполняется, если когнитивные связи между @Form односторонние.
@@ -56,8 +43,7 @@ namespace FAL {
       Возведенная в абсолют борьба с циклическими связями между классами в архитектуре
   }
 
-  type_vs_instance_separation: @KQM::Statement {
-    Q: 0.9 // clarification
+  type_vs_instance_separation: @Statement(~0.9) {
     Core:
       &AB-BA регулирует только связи между @Form (типами, классами), а не между @Atom (экземплярами, объектами).
       @Atom могут формировать любые runtime-графы, включая циклы — это не нарушает ацикличность DAG типов.
@@ -67,16 +53,14 @@ namespace FAL {
       В ООП аналог: классы могут иметь unidirectional зависимости (наследование), но объекты — bidirectional ссылки.
   }
 
-  form-atom_dualism: @KQM::Statement {
-    Q: 0.9 // definition linkage
+  form-atom_dualism: @Statement(~0.9) {
     Core:
       Определения @Form и @Atom имеют смысл в паре, устанавливая отношения вида "тип-сущность"
     Reason:
       Дуализм имеет аналоги в разных предметных областях: "Класс/Объект" или "Интерфейс/Реализация" или "Шаблон/Инстанс шаблона" или "type/value"
   }
 
-  properties_of_definitions: @KQM::Statement {
-    Q: 0.8 // properties
+  properties_of_definitions: @Statement(~0.8) {
     Core:
       Разрешена вложенность: @Atom более высокого уровня абстракции может содержать множество @Atom разных @Form более низкого уровня
       Единственность @Form: @Atom имеет одну и только одну @Form
@@ -84,8 +68,7 @@ namespace FAL {
       Закрепление понимания определений и выявление важнейших свойств
   }
 
-  properties_of_AB-BA: @KQM::Statement {
-    Q: 0.8 // properties
+  properties_of_AB-BA: @Statement(~0.8) {
     Core:
       Правило &AB-BA не зависит от уровней системы: действует на зависимости @Form как внутри слоя, так и между слоями
       Частный случай правила: если система S знает о какой-либо своей части A, то части A запрещено знать о системе S
@@ -95,8 +78,7 @@ namespace FAL {
       Обобщение практического опыта архитектуры программного обеспечения, где двусторонние зависимости приводят к росту технического долга
   }
 
-  sometimes_forms_are_atoms: @KQM::Statement {
-    Q: 0.2 // наблюдение
+  sometimes_forms_are_atoms: @Statement(~0.2) {
     Core: Формы иногда могут быть представлны как Атомы некоей МетаФормы
     Reason: Постоянно проявляется на практике как удобство: тут и там видятся мета-классы
   }
