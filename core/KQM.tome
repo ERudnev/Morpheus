@@ -84,6 +84,13 @@ namespace KQM {
       "codegen_dependency_rules"
   }
 
+  Process: @Definition(@Artifact) {
+    Clause:
+      Process фиксирует преобразование/деятельность как артефакт: зачем (интент), что на входе/выходе, и по каким условиям
+      результат считается достигнутым/корректным.
+      Process не обязан фиксировать алгоритм или последовательность шагов.
+  }
+
   Tome: @Definition(@Container(@Artifact)) {
     Clause:
       Том является коллекцией @Artifact, объединённых общим смыслом.
