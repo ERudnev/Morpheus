@@ -118,6 +118,19 @@ namespace KQM {
     5: Имя не должно дублировать контекст объявления (namespace/том): не добавлять префиксы/суффиксы с ним.
   }
 
+  reference_instead_of_duplication: @Rule {
+    Правило ссылок вместо дублирования смысла.
+    1: Артефакт корпуса фиксирует новый смысл и связывает его с уже зафиксированными смыслами через ссылки (& / @).
+    2: Если нужный смысл/формат уже зафиксирован другим артефактом, то в тексте используется ссылка на него вместо копирования его содержания.
+      1: Пример: формы @Definition и @Statement задаются артефактами @KQM::Definition и @KQM::Statement.
+    3: Имена KQM-форм в тексте артефактов записываются как ссылки на формы: @Definition, @Statement, @Rule.
+    4: Ссылка на внешний авторитетный источник фиксируется как строковая ссылка в поле артефакта.
+      1: Пример:
+        1: Notation: external_source::path
+  }
+
+  
+
   some_statements_are_temporary: @Statement(~0.1) {
     Core: Some statements are "weak" and not so important in large contexts
     Reason: User needs some place/Form to write notes at least
